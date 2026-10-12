@@ -2,14 +2,13 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070b20">
 <title>Hilal'e Bir Sürpriz 🌼</title>
 
 <style>
 :root {
   --night: #070b20;
-  --blue: #101a3b;
   --white: #fffaf3;
   --gold: #ffe5a0;
   --pink: #ffc9e0;
@@ -20,32 +19,26 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html {
+html, body {
+  margin: 0;
   min-height: 100%;
   background: var(--night);
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
   color: var(--white);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
     radial-gradient(ellipse at 50% 0%, #1b2850 0%, transparent 55%),
     radial-gradient(ellipse at 0% 90%, #171330 0%, transparent 55%),
     linear-gradient(180deg, #080d24, #10152f 55%, #090b1b);
 }
 
-button, input {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
+button, input { font: inherit; }
+button { cursor: pointer; }
 
 #sky, #fireworks {
   position: fixed;
@@ -103,9 +96,9 @@ button {
 }
 
 @keyframes shoot {
-  0% { transform: translate(0, 0) rotate(-32deg); opacity: 0; }
+  0% { transform: translate(0,0) rotate(-32deg); opacity: 0; }
   10% { opacity: 1; }
-  100% { transform: translate(-145vw, 65vh) rotate(-32deg); opacity: 0; }
+  100% { transform: translate(-145vw,65vh) rotate(-32deg); opacity: 0; }
 }
 
 #app {
@@ -117,9 +110,9 @@ button {
   align-items: center;
   justify-content: center;
   padding:
-    max(34px, env(safe-area-inset-top))
+    max(34px,env(safe-area-inset-top))
     19px
-    max(30px, env(safe-area-inset-bottom));
+    max(30px,env(safe-area-inset-bottom));
 }
 
 .screen {
@@ -127,12 +120,10 @@ button {
   max-width: 490px;
   margin: auto;
   text-align: center;
-  animation: appear .9s ease both;
+  animation: appear .8s ease both;
 }
 
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
 
 @keyframes appear {
   from { opacity: 0; transform: translateY(13px); }
@@ -142,20 +133,20 @@ button {
 .kicker {
   color: #d9d9ff;
   font-size: 11px;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 23px;
 }
 
 .intro-title {
   color: var(--white);
-  font-size: clamp(29px, 8vw, 43px);
+  font-size: clamp(29px,8vw,43px);
   line-height: 1.38;
   letter-spacing: -.9px;
   font-weight: 650;
-  text-wrap: balance;
   text-shadow: 0 0 28px #b7c6ff2c;
   margin: 0 auto 20px;
+  text-wrap: balance;
 }
 
 .intro-title .highlight {
@@ -197,8 +188,8 @@ button {
   padding: 30px 23px 26px;
   border: 1px solid #ffffff20;
   border-radius: 27px;
-  background: linear-gradient(145deg, #ffffff12, #ffffff05);
-  box-shadow: 0 20px 65px #00000035, inset 0 1px #ffffff0b;
+  background: linear-gradient(145deg,#ffffff12,#ffffff05);
+  box-shadow: 0 20px 65px #00000035,inset 0 1px #ffffff0b;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -210,7 +201,7 @@ button {
 }
 
 .question {
-  font-size: clamp(23px, 6vw, 31px);
+  font-size: clamp(23px,6vw,31px);
   line-height: 1.4;
   margin: 5px 0 12px;
   text-wrap: balance;
@@ -235,9 +226,6 @@ button {
   text-align: center;
   letter-spacing: 2px;
   font-size: 18px;
-  transition: border-color .2s, box-shadow .2s;
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 .date-input::placeholder {
@@ -259,21 +247,13 @@ button {
   border: 0;
   border-radius: 15px;
   color: #24203a;
-  background: linear-gradient(110deg, #fff0c3, #f4c9df);
+  background: linear-gradient(110deg,#fff0c3,#f4c9df);
   font-weight: 750;
   font-size: 16px;
   box-shadow: 0 8px 25px #eacde31c;
-  transition: transform .2s, filter .2s;
 }
 
-.primary-btn:active {
-  transform: scale(.98);
-}
-
-.primary-btn:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 4px;
-}
+.primary-btn:active { transform: scale(.98); }
 
 .error {
   color: #ffb1b9;
@@ -283,7 +263,7 @@ button {
   min-height: 23px;
 }
 
-.error .angry {
+.angry {
   display: block;
   font-size: 36px;
   margin-bottom: 5px;
@@ -291,16 +271,206 @@ button {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
+  0%,100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   75% { transform: translateX(5px); }
 }
 
-/* Büyük sürpriz */
+/* MEKTUP SAHNESİ */
 
-#surprise {
-  max-width: 520px;
+#letterScreen { max-width: 440px; }
+
+.letter-intro {
+  color: #d8def9;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
 }
+
+.envelope-area {
+  position: relative;
+  width: min(310px,85vw);
+  height: 235px;
+  margin: 5px auto 0;
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
+}
+
+.envelope {
+  position: absolute;
+  width: 100%;
+  height: 175px;
+  bottom: 15px;
+  left: 0;
+  border-radius: 7px 7px 12px 12px;
+  background: linear-gradient(145deg,#f8dfb9,#d9ad7c);
+  box-shadow: 0 18px 40px #0006,0 0 30px #f6d6a21b;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #d9b18a;
+  border-radius: 7px 7px 12px 12px;
+}
+
+.envelope-paper {
+  position: absolute;
+  z-index: 2;
+  width: 88%;
+  height: 145px;
+  left: 6%;
+  bottom: 8px;
+  border-radius: 5px;
+  background: linear-gradient(#fffdf5,#fff0d9);
+  color: #6b4860;
+  padding: 18px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia,serif;
+  font-size: 20px;
+  line-height: 1.5;
+  box-shadow: 0 0 10px #593b291b;
+  transition: transform 1s ease,bottom 1s ease,height 1s ease;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(145deg,#e8c49b,#c99a6c);
+  clip-path: polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 110px;
+  z-index: 5;
+  background: linear-gradient(160deg,#f4d7b0,#d7ae82);
+  clip-path: polygon(0 0,100% 0,50% 100%);
+  transform-origin: top center;
+  transition: transform .8s ease;
+  filter: drop-shadow(0 3px 2px #5d3c2924);
+}
+
+.envelope-seal {
+  position: absolute;
+  z-index: 6;
+  top: 82px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg,#a94b68,#6d2344);
+  border: 2px solid #f4d9b1;
+  color: #fff1d5;
+  font-size: 19px;
+  box-shadow: 0 3px 10px #53312c55;
+  transition: opacity .35s ease;
+}
+
+.envelope-area.opened .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-area.opened .envelope-seal { opacity: 0; }
+
+.envelope-area.opened .envelope-paper {
+  bottom: 100px;
+  height: 200px;
+  transform: translateY(-20px);
+  z-index: 7;
+}
+
+.envelope-area.opened .envelope-front { z-index: 4; }
+
+.tap-label {
+  margin-top: 15px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #ffe7b6;
+  animation: tapPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes tapPulse {
+  0%,100% { opacity: .65; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-4px); }
+}
+
+.letter-question {
+  margin-top: 27px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .8s ease,transform .8s ease;
+  pointer-events: none;
+}
+
+.letter-question.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.letter-question h2 {
+  font-family: Georgia,serif;
+  font-weight: 500;
+  font-size: clamp(25px,7vw,33px);
+  line-height: 1.4;
+  color: #fff0cb;
+  margin: 0 0 22px;
+  text-shadow: 0 0 25px #ffe5a027;
+}
+
+.letter-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.answer-btn {
+  min-height: 52px;
+  border-radius: 15px;
+  padding: 12px 8px;
+  font-size: 14px;
+  font-weight: 650;
+  transition: transform .2s;
+}
+
+.answer-btn:active { transform: scale(.96); }
+
+.yes-btn {
+  border: 0;
+  color: #312039;
+  background: linear-gradient(120deg,#fff0c3,#f4c9df);
+  box-shadow: 0 6px 24px #eecde32b;
+}
+
+.no-btn {
+  border: 1px solid #ffffff30;
+  background: #ffffff0a;
+  color: #f2e9ff;
+}
+
+.urgent-message {
+  min-height: 26px;
+  margin-top: 15px;
+  color: #ffc9e0;
+  font-size: 17px;
+  font-weight: 650;
+  animation: appear .4s ease both;
+}
+
+/* FİNAL */
+
+#surprise { max-width: 520px; }
 
 .daisy-field {
   position: fixed;
@@ -313,11 +483,11 @@ button {
 .daisy {
   position: absolute;
   bottom: -70px;
-  font-size: clamp(22px, 7vw, 40px);
+  font-size: clamp(22px,7vw,40px);
   opacity: 0;
   filter: drop-shadow(0 0 8px #fff2bb38);
-  animation: flowerRise var(--duration, 9s) ease-in-out forwards;
-  animation-delay: var(--delay, 0s);
+  animation: flowerRise var(--duration,9s) ease-in-out forwards;
+  animation-delay: var(--delay,0s);
 }
 
 @keyframes flowerRise {
@@ -334,24 +504,24 @@ button {
 }
 
 .heart-flower {
-  font-size: clamp(48px, 14vw, 68px);
+  font-size: clamp(48px,14vw,68px);
   margin-bottom: 12px;
   animation: floatHeart 3s ease-in-out infinite;
   filter: drop-shadow(0 0 20px #ffdd9d35);
 }
 
 @keyframes floatHeart {
-  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  0%,100% { transform: translateY(0) rotate(-4deg); }
   50% { transform: translateY(-9px) rotate(4deg); }
 }
 
 .surprise-heading {
-  font-size: clamp(29px, 8vw, 42px);
+  font-size: clamp(29px,8vw,42px);
   line-height: 1.3;
   margin: 0 0 15px;
-  text-wrap: balance;
   color: #fff4d5;
   text-shadow: 0 0 28px #ffe3a42b;
+  text-wrap: balance;
 }
 
 .surprise-text {
@@ -359,13 +529,9 @@ button {
   line-height: 1.95;
   color: #eef0ff;
   margin: 0 auto;
-  text-wrap: pretty;
 }
 
-.surprise-text strong {
-  color: #ffd7e8;
-  font-weight: 650;
-}
+.surprise-text strong { color: #ffd7e8; }
 
 .divider-heart {
   color: #f9d4e6;
@@ -378,15 +544,26 @@ button {
   margin: 25px auto 0;
   padding: 21px 19px;
   border: 1px solid #fff0c32c;
-  background: linear-gradient(140deg, #fff7e20e, #ffcde30b);
+  background: linear-gradient(140deg,#fff7e20e,#ffcde30b);
   border-radius: 24px;
 }
 
 .squirrel {
-  font-size: 70px;
-  line-height: 1.4;
-  display: block;
-  animation: floatHeart 3.4s ease-in-out infinite;
+  font-size: 94px;
+  line-height: 1.35;
+  display: inline-block;
+  cursor: pointer;
+  transform-origin: center bottom;
+  animation: squirrelMove 2.7s ease-in-out infinite;
+  filter: drop-shadow(0 8px 14px #0003);
+  user-select: none;
+}
+
+@keyframes squirrelMove {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  25% { transform: translateY(-7px) rotate(4deg); }
+  50% { transform: translateY(0) rotate(5deg); }
+  75% { transform: translateY(-5px) rotate(-3deg); }
 }
 
 .squirrel-caption {
@@ -399,7 +576,7 @@ button {
 
 .squirrel-message {
   color: #fff8f1;
-  font-size: clamp(20px, 5.6vw, 26px);
+  font-size: clamp(20px,5.6vw,26px);
   line-height: 1.55;
   font-weight: 650;
   margin: 0;
@@ -430,10 +607,6 @@ button {
   font-size: 13px;
 }
 
-.replay-btn:active {
-  background: #ffffff18;
-}
-
 .footer {
   font-size: 11px;
   letter-spacing: 2px;
@@ -442,7 +615,19 @@ button {
   margin-top: 27px;
 }
 
-/* Küçük ekranlar */
+.heart-pop {
+  position: fixed;
+  z-index: 8;
+  pointer-events: none;
+  font-size: 25px;
+  animation: heartFly 1.2s ease-out forwards;
+}
+
+@keyframes heartFly {
+  0% { opacity: 0; transform: translateY(0) scale(.5); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-100px) scale(1.5) rotate(20deg); }
+}
 
 @media (max-width: 380px) {
   #app { padding-left: 15px; padding-right: 15px; }
@@ -451,20 +636,24 @@ button {
   .surprise-text { font-size: 15px; }
   .moon { width: 43px; height: 43px; }
   .moon::after { width: 42px; height: 42px; left: 12px; }
+  .envelope-area { height: 215px; }
+  .letter-buttons { gap: 9px; }
+  .answer-btn { font-size: 13px; }
 }
 
 @media (max-height: 700px) {
   #app { align-items: flex-start; }
   .screen { margin-top: auto; margin-bottom: auto; }
   .glass-card { padding-top: 22px; padding-bottom: 20px; }
-  .intro-title { font-size: clamp(27px, 7vw, 37px); }
+  .intro-title { font-size: clamp(27px,7vw,37px); }
   .surprise-content { padding-top: 8px; }
   .heart-flower { font-size: 47px; margin-bottom: 6px; }
   .squirrel-card { margin-top: 18px; }
+  .envelope-area { height: 205px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,*::before,*::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
@@ -480,22 +669,18 @@ button {
 
 <main id="app">
 
-  <!-- 1. MESAJ -->
+  <!-- 1: İLK MESAJ -->
   <section id="intro1" class="screen">
     <div class="kicker">✦ Yıldızların altında ✦</div>
     <h1 class="intro-title">
       Merhaba Hilal,
       <span class="highlight">seni çok seviyorum.</span>
     </h1>
-    <p class="intro-subtitle">
-      Bu gece senin için küçük bir şey hazırladım.
-    </p>
-    <div class="loading-dots" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
+    <p class="intro-subtitle">Bu gece senin için küçük bir şey hazırladım.</p>
+    <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
   </section>
 
-  <!-- 2. SÜRPRİZ MESAJI -->
+  <!-- 2: SÜRPRİZ MESAJI -->
   <section id="intro2" class="screen hidden">
     <div class="kicker">✧ Sadece sana özel ✧</div>
     <h1 class="intro-title">
@@ -503,54 +688,70 @@ button {
       <span class="highlight">(Bozkurt Alfa Aşkının)</span>
       sana bir sürprizi var.
     </h1>
-    <p class="intro-subtitle">
-      Ama önce küçük bir soruyu cevaplaman gerekiyor...
-    </p>
-    <div class="loading-dots" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
+    <p class="intro-subtitle">Ama önce küçük bir soruyu cevaplaman gerekiyor...</p>
+    <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
   </section>
 
-  <!-- 3. ŞİFRE EKRANI -->
+  <!-- 3: ŞİFRE -->
   <section id="passwordScreen" class="screen hidden">
     <div class="glass-card">
-      <div class="small-star" aria-hidden="true">✧ ✦ ✧</div>
+      <div class="small-star">✧ ✦ ✧</div>
       <div class="kicker">Küçük bir hatıra</div>
       <h1 class="question">Biz ne zaman tanıştık?</h1>
-      <p class="muted">
-        Bazen tek bir tarih, kocaman bir hikâyenin başlangıcıdır.
-      </p>
+      <p class="muted">Bazen tek bir tarih, kocaman bir hikâyenin başlangıcıdır.</p>
 
       <form id="passwordForm">
         <label for="dateInput" class="hidden">Tanışma tarihi</label>
-        <input
-          id="dateInput"
-          class="date-input"
-          type="text"
-          inputmode="numeric"
-          autocomplete="off"
-          maxlength="10"
-          placeholder="GG.AA.YYYY"
-          aria-describedby="errorMessage"
-          required
-        >
-        <button type="submit" class="primary-btn">
-          Sürprizi Aç ✨
-        </button>
+        <input id="dateInput" class="date-input" type="text"
+          inputmode="numeric" autocomplete="off" maxlength="10"
+          placeholder="GG.AA.YYYY" aria-describedby="errorMessage" required>
+        <button type="submit" class="primary-btn">Sürprizi Aç ✨</button>
         <div id="errorMessage" class="error" role="status" aria-live="polite"></div>
       </form>
     </div>
     <div class="footer">SENİN İÇİN HAZIRLANDI ♡</div>
   </section>
 
-  <!-- 4. BÜYÜK SÜRPRİZ -->
+  <!-- 4: KAPALI MEKTUP -->
+  <section id="letterScreen" class="screen hidden">
+    <div class="kicker">✦ Sana özel bir mektup ✦</div>
+    <p class="letter-intro">Bu mektup yalnızca senin için hazırlandı.</p>
+
+    <div id="envelopeArea" class="envelope-area"
+      role="button" tabindex="0" aria-label="Mektubu aç">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-paper">
+          <span>Hazır mısın<br>sevgilim? 🤍</span>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-seal">♥</div>
+      </div>
+    </div>
+
+    <div id="tapLabel" class="tap-label">✉️ TIKLA ✉️</div>
+
+    <div id="letterQuestion" class="letter-question">
+      <h2>Hazır mısın sevgilim? 🤍</h2>
+      <div class="letter-buttons">
+        <button id="yesButton" type="button" class="answer-btn yes-btn">
+          Evet, hazırım aşkım 🤍
+        </button>
+        <button id="noButton" type="button" class="answer-btn no-btn">
+          Hayır 🙈
+        </button>
+      </div>
+      <div id="urgentMessage" class="urgent-message" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- 5: BÜYÜK SÜRPRİZ -->
   <section id="surprise" class="screen hidden">
     <div class="surprise-content">
       <div class="heart-flower" aria-hidden="true">🌼</div>
       <div class="kicker">✦ Küçük bir mutluluk ✦</div>
-      <h1 class="surprise-heading">
-        Başardın Hilal! 🤍
-      </h1>
+      <h1 class="surprise-heading">Başardın Hilal! 🤍</h1>
 
       <p class="surprise-text">
         Bak, senin için bütün yıldızları toplamak isterdim.
@@ -563,10 +764,11 @@ button {
         Her şeyi tek başına çözmek zorunda da değilsin.
       </p>
 
-      <div class="divider-heart" aria-hidden="true">✧ ♡ ✧</div>
+      <div class="divider-heart">✧ ♡ ✧</div>
 
       <div class="squirrel-card">
-        <span class="squirrel" role="img" aria-label="Minik sincap">🐿️</span>
+        <span id="squirrel" class="squirrel" role="img"
+          aria-label="Minik sincap" tabindex="0">🐿️</span>
         <p class="squirrel-caption">Sana küçük bir dost getirdim</p>
         <p class="squirrel-message">
           Ne kadar zor bir gün geçirirsen geçir,
@@ -575,8 +777,7 @@ button {
       </div>
 
       <p class="closing">
-        Gülüşünün eksik olmadığı, kalbinin huzur bulduğu
-        günlerin olsun.
+        Gülüşünün eksik olmadığı, kalbinin huzur bulduğu günlerin olsun.
         <br>
         Yorulduğunda dinlen, üzüldüğünde anlat,
         mutlu olduğunda benimle de paylaş.
@@ -606,19 +807,30 @@ button {
   const intro1 = $("intro1");
   const intro2 = $("intro2");
   const passwordScreen = $("passwordScreen");
+  const letterScreen = $("letterScreen");
   const surprise = $("surprise");
   const form = $("passwordForm");
   const input = $("dateInput");
   const error = $("errorMessage");
   const daisyField = $("daisyField");
 
-  // ŞİFRE: Kullanıcının belirttiği tanışma tarihi.
+  const envelopeArea = $("envelopeArea");
+  const tapLabel = $("tapLabel");
+  const letterQuestion = $("letterQuestion");
+  const yesButton = $("yesButton");
+  const noButton = $("noButton");
+  const urgentMessage = $("urgentMessage");
+  const squirrel = $("squirrel");
+
+  // Şifre: 26.09.2026
   const CORRECT_PASSWORD = "26092026";
 
   let stageTimers = [];
   let flowerTimer = null;
   let fireworksActive = false;
   let animationFrame = null;
+  let envelopeOpened = false;
+  let surpriseStarted = false;
 
   function later(fn, ms) {
     const timer = setTimeout(fn, ms);
@@ -626,8 +838,13 @@ button {
     return timer;
   }
 
+  function clearStageTimers() {
+    stageTimers.forEach(clearTimeout);
+    stageTimers = [];
+  }
+
   function showOnly(screen) {
-    [intro1, intro2, passwordScreen, surprise].forEach(el => {
+    [intro1, intro2, passwordScreen, letterScreen, surprise].forEach(el => {
       el.classList.add("hidden");
     });
 
@@ -637,38 +854,32 @@ button {
     screen.style.animation = "";
   }
 
-  // Tarihi 26.09.2026 biçiminde otomatik düzenle.
+  // Tarih alanına rakam girildikçe GG.AA.YYYY formatı oluşturulur.
   input.addEventListener("input", () => {
     let digits = input.value.replace(/\D/g, "").slice(0, 8);
 
     if (digits.length > 4) {
-      digits = digits.slice(0, 2) + "." +
-               digits.slice(2, 4) + "." +
-               digits.slice(4);
+      digits = digits.slice(0,2) + "." +
+               digits.slice(2,4) + "." + digits.slice(4);
     } else if (digits.length > 2) {
-      digits = digits.slice(0, 2) + "." + digits.slice(2);
+      digits = digits.slice(0,2) + "." + digits.slice(2);
     }
 
     input.value = digits;
     error.innerHTML = "";
   });
 
-  // İlk 5 saniye mesaj 1, sonraki 5 saniye mesaj 2.
+  // İlk mesaj 5 saniye, ikinci mesaj 5 saniye görünür.
   function startExperience() {
-    stageTimers.forEach(clearTimeout);
-    stageTimers = [];
-
+    clearStageTimers();
     showOnly(intro1);
 
-    later(() => {
-      showOnly(intro2);
-    }, 5000);
+    later(() => showOnly(intro2), 5000);
 
     later(() => {
       showOnly(passwordScreen);
       input.value = "";
       error.innerHTML = "";
-      input.focus({ preventScroll: true });
     }, 10000);
   }
 
@@ -679,12 +890,14 @@ button {
 
     if (entered === CORRECT_PASSWORD) {
       error.innerHTML = "";
-      stageTimers.forEach(clearTimeout);
-      stageTimers = [];
-
-      showOnly(surprise);
-      startDaisies();
-      launchFireworks();
+      clearStageTimers();
+      envelopeOpened = false;
+      surpriseStarted = false;
+      envelopeArea.classList.remove("opened");
+      letterQuestion.classList.remove("visible");
+      tapLabel.classList.remove("hidden");
+      urgentMessage.textContent = "";
+      showOnly(letterScreen);
     } else {
       error.innerHTML =
         '<span class="angry" aria-hidden="true">😠</span>' +
@@ -693,15 +906,64 @@ button {
       input.value = "";
       input.focus({ preventScroll: true });
 
-      // Küçük bir titreşim, desteklenmeyen cihazlarda sorun çıkarmaz.
       if (navigator.vibrate) navigator.vibrate(100);
     }
   });
 
-  // Gökyüzünde papatyalar yükselsin.
+  // Zarf tıklanınca açılır, kâğıt yükselir ve soru görünür.
+  function openEnvelope() {
+    if (envelopeOpened) return;
+    envelopeOpened = true;
+
+    envelopeArea.classList.add("opened");
+    tapLabel.classList.add("hidden");
+
+    setTimeout(() => {
+      letterQuestion.classList.add("visible");
+    }, 850);
+  }
+
+  envelopeArea.addEventListener("click", openEnvelope);
+
+  envelopeArea.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openEnvelope();
+    }
+  });
+
+  // Hayır'a basınca ekran değişmez, mektup olduğu gibi kalır.
+  noButton.addEventListener("click", () => {
+    urgentMessage.textContent = "";
+    noButton.animate(
+      [
+        { transform: "scale(1)" },
+        { transform: "scale(.96)" },
+        { transform: "scale(1)" }
+      ],
+      { duration: 220 }
+    );
+  });
+
+  // Evet'e basınca mesaj çıkar, ardından büyük sürpriz açılır.
+  yesButton.addEventListener("click", () => {
+    if (surpriseStarted) return;
+    surpriseStarted = true;
+
+    urgentMessage.textContent = "Evet'e bas çabuk! 🥹❤️";
+    yesButton.disabled = true;
+
+    setTimeout(() => {
+      showOnly(surprise);
+      startDaisies();
+      launchFireworks();
+      popHearts(window.innerWidth / 2, window.innerHeight / 2);
+    }, 1400);
+  });
+
+  // Papatyalar yükselerek ekrana yayılır.
   function startDaisies() {
     daisyField.innerHTML = "";
-
     if (flowerTimer) clearInterval(flowerTimer);
 
     const flowers = ["🌼", "🌼", "🌼", "🌸", "✿"];
@@ -711,16 +973,11 @@ button {
 
       const flower = document.createElement("span");
       flower.className = "daisy";
-      flower.textContent =
-        flowers[Math.floor(Math.random() * flowers.length)];
+      flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
 
       flower.style.left = (Math.random() * 94 + 3) + "%";
-      flower.style.setProperty(
-        "--duration", (7 + Math.random() * 5) + "s"
-      );
-      flower.style.setProperty(
-        "--delay", (Math.random() * 1.5) + "s"
-      );
+      flower.style.setProperty("--duration", (7 + Math.random() * 5) + "s");
+      flower.style.setProperty("--delay", (Math.random() * 1.5) + "s");
       flower.style.fontSize = (22 + Math.random() * 22) + "px";
 
       daisyField.appendChild(flower);
@@ -734,13 +991,14 @@ button {
     flowerTimer = setInterval(addDaisy, 430);
   }
 
-  // Yıldızlı gece arka planı.
+  // Yıldızlı gece.
   const sky = $("sky");
   const skyCtx = sky.getContext("2d");
   let stars = [];
   let skyWidth = 0;
   let skyHeight = 0;
   let pixelRatio = 1;
+  let skyTick = 0;
 
   function resizeSky() {
     pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -767,8 +1025,6 @@ button {
     }));
   }
 
-  let skyTick = 0;
-
   function drawSky() {
     skyCtx.clearRect(0, 0, skyWidth, skyHeight);
     skyTick++;
@@ -793,7 +1049,7 @@ button {
     requestAnimationFrame(drawSky);
   }
 
-  // Bazen kayan yıldız.
+  // Aralıklı kayan yıldız.
   function shootingStar() {
     const star = document.createElement("div");
     star.className = "shooting-star";
@@ -809,7 +1065,7 @@ button {
     }, 3500 + Math.random() * 6500);
   }
 
-  // Havai fişek animasyonu.
+  // Havai fişek sistemi.
   const canvas = $("fireworks");
   const ctx = canvas.getContext("2d");
   let fwWidth = 0;
@@ -907,13 +1163,42 @@ button {
     }
   }
 
+  // Sincaba dokununca kalpler yükselir.
+  function popHearts(x, y) {
+    const hearts = ["🤍", "💗", "💕", "✨"];
+
+    for (let i = 0; i < 7; i++) {
+      const heart = document.createElement("span");
+      heart.className = "heart-pop";
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = (x + (Math.random() * 90 - 45)) + "px";
+      heart.style.top = (y + (Math.random() * 30 - 15)) + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1300);
+    }
+  }
+
+  squirrel.addEventListener("click", event => {
+    const rect = squirrel.getBoundingClientRect();
+    popHearts(rect.left + rect.width / 2, rect.top + rect.height / 2);
+  });
+
+  squirrel.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      const rect = squirrel.getBoundingClientRect();
+      popHearts(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+  });
+
   $("replayButton").addEventListener("click", () => {
     launchFireworks();
     startDaisies();
     shootingStar();
+    const rect = squirrel.getBoundingClientRect();
+    popHearts(rect.left + rect.width / 2, rect.top + rect.height / 2);
   });
 
-  // Ekran boyutu değişirse yıldızları ve fişekleri yeniden ölçekle.
   window.addEventListener("resize", () => {
     resizeSky();
     resizeFireworks();
