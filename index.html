@@ -1,0 +1,931 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b20">
+<title>Hilal'e Bir Sürpriz 🌼</title>
+
+<style>
+:root {
+  --night: #070b20;
+  --blue: #101a3b;
+  --white: #fffaf3;
+  --gold: #ffe5a0;
+  --pink: #ffc9e0;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  min-height: 100%;
+  background: var(--night);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%, #1b2850 0%, transparent 55%),
+    radial-gradient(ellipse at 0% 90%, #171330 0%, transparent 55%),
+    linear-gradient(180deg, #080d24, #10152f 55%, #090b1b);
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+#sky, #fireworks {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#sky { z-index: 0; }
+#fireworks { z-index: 5; }
+
+.moon {
+  position: fixed;
+  top: max(7%, 40px);
+  right: 11%;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #fff5ce;
+  box-shadow: 0 0 24px #fff0b577, 0 0 75px #b9d6ff35;
+  z-index: 0;
+  animation: moonGlow 4s ease-in-out infinite alternate;
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 15px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #111832;
+}
+
+@keyframes moonGlow {
+  from { filter: brightness(.9); }
+  to { filter: brightness(1.15); }
+}
+
+.shooting-star {
+  position: fixed;
+  top: 12%;
+  left: 110%;
+  width: 110px;
+  height: 2px;
+  z-index: 1;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, #fff, #c9dcff);
+  box-shadow: 0 0 8px #fff;
+  transform: rotate(-32deg);
+  animation: shoot 1.3s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes shoot {
+  0% { transform: translate(0, 0) rotate(-32deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(-145vw, 65vh) rotate(-32deg); opacity: 0; }
+}
+
+#app {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:
+    max(34px, env(safe-area-inset-top))
+    19px
+    max(30px, env(safe-area-inset-bottom));
+}
+
+.screen {
+  width: 100%;
+  max-width: 490px;
+  margin: auto;
+  text-align: center;
+  animation: appear .9s ease both;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(13px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.kicker {
+  color: #d9d9ff;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 23px;
+}
+
+.intro-title {
+  color: var(--white);
+  font-size: clamp(29px, 8vw, 43px);
+  line-height: 1.38;
+  letter-spacing: -.9px;
+  font-weight: 650;
+  text-wrap: balance;
+  text-shadow: 0 0 28px #b7c6ff2c;
+  margin: 0 auto 20px;
+}
+
+.intro-title .highlight {
+  display: block;
+  color: var(--pink);
+  margin-top: 8px;
+}
+
+.intro-subtitle {
+  color: #d1d8f2;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.loading-dots {
+  margin-top: 36px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff1c4;
+  animation: dot 1s ease-in-out infinite alternate;
+}
+
+.loading-dots span:nth-child(2) { animation-delay: .2s; }
+.loading-dots span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes dot {
+  to { opacity: .25; transform: translateY(-5px); }
+}
+
+.glass-card {
+  position: relative;
+  padding: 30px 23px 26px;
+  border: 1px solid #ffffff20;
+  border-radius: 27px;
+  background: linear-gradient(145deg, #ffffff12, #ffffff05);
+  box-shadow: 0 20px 65px #00000035, inset 0 1px #ffffff0b;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.small-star {
+  font-size: 23px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.question {
+  font-size: clamp(23px, 6vw, 31px);
+  line-height: 1.4;
+  margin: 5px 0 12px;
+  text-wrap: balance;
+}
+
+.muted {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #c5cce4;
+  margin: 0 auto 22px;
+}
+
+.date-input {
+  width: 100%;
+  min-height: 55px;
+  border-radius: 15px;
+  border: 1px solid #ffffff30;
+  background: #070b20b8;
+  color: white;
+  padding: 14px 16px;
+  outline: none;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 18px;
+  transition: border-color .2s, box-shadow .2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.date-input::placeholder {
+  color: #858eae;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+
+.date-input:focus {
+  border-color: #f3d9a0;
+  box-shadow: 0 0 0 3px #f3d9a015;
+}
+
+.primary-btn {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 13px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 15px;
+  color: #24203a;
+  background: linear-gradient(110deg, #fff0c3, #f4c9df);
+  font-weight: 750;
+  font-size: 16px;
+  box-shadow: 0 8px 25px #eacde31c;
+  transition: transform .2s, filter .2s;
+}
+
+.primary-btn:active {
+  transform: scale(.98);
+}
+
+.primary-btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
+.error {
+  color: #ffb1b9;
+  margin: 17px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 23px;
+}
+
+.error .angry {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 5px;
+  animation: shake .35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Büyük sürpriz */
+
+#surprise {
+  max-width: 520px;
+}
+
+.daisy-field {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.daisy {
+  position: absolute;
+  bottom: -70px;
+  font-size: clamp(22px, 7vw, 40px);
+  opacity: 0;
+  filter: drop-shadow(0 0 8px #fff2bb38);
+  animation: flowerRise var(--duration, 9s) ease-in-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes flowerRise {
+  0% { transform: translateY(0) rotate(-20deg) scale(.45); opacity: 0; }
+  12% { opacity: .95; }
+  75% { opacity: .9; }
+  100% { transform: translateY(-115vh) rotate(40deg) scale(1.1); opacity: 0; }
+}
+
+.surprise-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.heart-flower {
+  font-size: clamp(48px, 14vw, 68px);
+  margin-bottom: 12px;
+  animation: floatHeart 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px #ffdd9d35);
+}
+
+@keyframes floatHeart {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-9px) rotate(4deg); }
+}
+
+.surprise-heading {
+  font-size: clamp(29px, 8vw, 42px);
+  line-height: 1.3;
+  margin: 0 0 15px;
+  text-wrap: balance;
+  color: #fff4d5;
+  text-shadow: 0 0 28px #ffe3a42b;
+}
+
+.surprise-text {
+  font-size: 16px;
+  line-height: 1.95;
+  color: #eef0ff;
+  margin: 0 auto;
+  text-wrap: pretty;
+}
+
+.surprise-text strong {
+  color: #ffd7e8;
+  font-weight: 650;
+}
+
+.divider-heart {
+  color: #f9d4e6;
+  letter-spacing: 10px;
+  margin: 24px 0;
+  font-size: 16px;
+}
+
+.squirrel-card {
+  margin: 25px auto 0;
+  padding: 21px 19px;
+  border: 1px solid #fff0c32c;
+  background: linear-gradient(140deg, #fff7e20e, #ffcde30b);
+  border-radius: 24px;
+}
+
+.squirrel {
+  font-size: 70px;
+  line-height: 1.4;
+  display: block;
+  animation: floatHeart 3.4s ease-in-out infinite;
+}
+
+.squirrel-caption {
+  color: #ffe7b3;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 6px 0 13px;
+}
+
+.squirrel-message {
+  color: #fff8f1;
+  font-size: clamp(20px, 5.6vw, 26px);
+  line-height: 1.55;
+  font-weight: 650;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.closing {
+  color: #c9d0eb;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 24px auto 0;
+}
+
+.signature {
+  color: #ffd7e8;
+  font-size: 17px;
+  margin-top: 14px;
+  font-weight: 650;
+}
+
+.replay-btn {
+  margin: 25px auto 0;
+  padding: 12px 18px;
+  color: #e2e7ff;
+  background: #ffffff0c;
+  border: 1px solid #ffffff24;
+  border-radius: 13px;
+  font-size: 13px;
+}
+
+.replay-btn:active {
+  background: #ffffff18;
+}
+
+.footer {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #aeb7d5;
+  opacity: .75;
+  margin-top: 27px;
+}
+
+/* Küçük ekranlar */
+
+@media (max-width: 380px) {
+  #app { padding-left: 15px; padding-right: 15px; }
+  .glass-card { padding: 25px 18px 22px; }
+  .muted { font-size: 13px; }
+  .surprise-text { font-size: 15px; }
+  .moon { width: 43px; height: 43px; }
+  .moon::after { width: 42px; height: 42px; left: 12px; }
+}
+
+@media (max-height: 700px) {
+  #app { align-items: flex-start; }
+  .screen { margin-top: auto; margin-bottom: auto; }
+  .glass-card { padding-top: 22px; padding-bottom: 20px; }
+  .intro-title { font-size: clamp(27px, 7vw, 37px); }
+  .surprise-content { padding-top: 8px; }
+  .heart-flower { font-size: 47px; margin-bottom: 6px; }
+  .squirrel-card { margin-top: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="fireworks" aria-hidden="true"></canvas>
+<div class="moon" aria-hidden="true"></div>
+
+<main id="app">
+
+  <!-- 1. MESAJ -->
+  <section id="intro1" class="screen">
+    <div class="kicker">✦ Yıldızların altında ✦</div>
+    <h1 class="intro-title">
+      Merhaba Hilal,
+      <span class="highlight">seni çok seviyorum.</span>
+    </h1>
+    <p class="intro-subtitle">
+      Bu gece senin için küçük bir şey hazırladım.
+    </p>
+    <div class="loading-dots" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <!-- 2. SÜRPRİZ MESAJI -->
+  <section id="intro2" class="screen hidden">
+    <div class="kicker">✧ Sadece sana özel ✧</div>
+    <h1 class="intro-title">
+      Emrullah
+      <span class="highlight">(Bozkurt Alfa Aşkının)</span>
+      sana bir sürprizi var.
+    </h1>
+    <p class="intro-subtitle">
+      Ama önce küçük bir soruyu cevaplaman gerekiyor...
+    </p>
+    <div class="loading-dots" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+  </section>
+
+  <!-- 3. ŞİFRE EKRANI -->
+  <section id="passwordScreen" class="screen hidden">
+    <div class="glass-card">
+      <div class="small-star" aria-hidden="true">✧ ✦ ✧</div>
+      <div class="kicker">Küçük bir hatıra</div>
+      <h1 class="question">Biz ne zaman tanıştık?</h1>
+      <p class="muted">
+        Bazen tek bir tarih, kocaman bir hikâyenin başlangıcıdır.
+      </p>
+
+      <form id="passwordForm">
+        <label for="dateInput" class="hidden">Tanışma tarihi</label>
+        <input
+          id="dateInput"
+          class="date-input"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          maxlength="10"
+          placeholder="GG.AA.YYYY"
+          aria-describedby="errorMessage"
+          required
+        >
+        <button type="submit" class="primary-btn">
+          Sürprizi Aç ✨
+        </button>
+        <div id="errorMessage" class="error" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+    <div class="footer">SENİN İÇİN HAZIRLANDI ♡</div>
+  </section>
+
+  <!-- 4. BÜYÜK SÜRPRİZ -->
+  <section id="surprise" class="screen hidden">
+    <div class="surprise-content">
+      <div class="heart-flower" aria-hidden="true">🌼</div>
+      <div class="kicker">✦ Küçük bir mutluluk ✦</div>
+      <h1 class="surprise-heading">
+        Başardın Hilal! 🤍
+      </h1>
+
+      <p class="surprise-text">
+        Bak, senin için bütün yıldızları toplamak isterdim.
+        Ama gökyüzü biraz kalabalıktı, ben de sana
+        <strong>papatyalar getirdim.</strong>
+        <br><br>
+        Biliyor musun, bazen insanın tek ihtiyacı her şeyi
+        anlatmak zorunda kalmadan yanında duracak birisidir.
+        Her zaman güçlü olmak zorunda değilsin.
+        Her şeyi tek başına çözmek zorunda da değilsin.
+      </p>
+
+      <div class="divider-heart" aria-hidden="true">✧ ♡ ✧</div>
+
+      <div class="squirrel-card">
+        <span class="squirrel" role="img" aria-label="Minik sincap">🐿️</span>
+        <p class="squirrel-caption">Sana küçük bir dost getirdim</p>
+        <p class="squirrel-message">
+          Ne kadar zor bir gün geçirirsen geçir,
+          hep yanındayım. 🤍
+        </p>
+      </div>
+
+      <p class="closing">
+        Gülüşünün eksik olmadığı, kalbinin huzur bulduğu
+        günlerin olsun.
+        <br>
+        Yorulduğunda dinlen, üzüldüğünde anlat,
+        mutlu olduğunda benimle de paylaş.
+        <br><br>
+        <strong>İyi ki varsın Hilal.</strong>
+      </p>
+
+      <div class="signature">Seni çok seven Emrullah ♡</div>
+
+      <button type="button" id="replayButton" class="replay-btn">
+        ✨ Gökyüzünü yeniden canlandır
+      </button>
+      <div class="footer">BİR GÜN DEĞİL, HER GÜN DEĞERLİSİN</div>
+    </div>
+  </section>
+
+</main>
+
+<div id="daisyField" class="daisy-field" aria-hidden="true"></div>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = id => document.getElementById(id);
+
+  const intro1 = $("intro1");
+  const intro2 = $("intro2");
+  const passwordScreen = $("passwordScreen");
+  const surprise = $("surprise");
+  const form = $("passwordForm");
+  const input = $("dateInput");
+  const error = $("errorMessage");
+  const daisyField = $("daisyField");
+
+  // ŞİFRE: Kullanıcının belirttiği tanışma tarihi.
+  const CORRECT_PASSWORD = "26092026";
+
+  let stageTimers = [];
+  let flowerTimer = null;
+  let fireworksActive = false;
+  let animationFrame = null;
+
+  function later(fn, ms) {
+    const timer = setTimeout(fn, ms);
+    stageTimers.push(timer);
+    return timer;
+  }
+
+  function showOnly(screen) {
+    [intro1, intro2, passwordScreen, surprise].forEach(el => {
+      el.classList.add("hidden");
+    });
+
+    screen.classList.remove("hidden");
+    screen.style.animation = "none";
+    void screen.offsetWidth;
+    screen.style.animation = "";
+  }
+
+  // Tarihi 26.09.2026 biçiminde otomatik düzenle.
+  input.addEventListener("input", () => {
+    let digits = input.value.replace(/\D/g, "").slice(0, 8);
+
+    if (digits.length > 4) {
+      digits = digits.slice(0, 2) + "." +
+               digits.slice(2, 4) + "." +
+               digits.slice(4);
+    } else if (digits.length > 2) {
+      digits = digits.slice(0, 2) + "." + digits.slice(2);
+    }
+
+    input.value = digits;
+    error.innerHTML = "";
+  });
+
+  // İlk 5 saniye mesaj 1, sonraki 5 saniye mesaj 2.
+  function startExperience() {
+    stageTimers.forEach(clearTimeout);
+    stageTimers = [];
+
+    showOnly(intro1);
+
+    later(() => {
+      showOnly(intro2);
+    }, 5000);
+
+    later(() => {
+      showOnly(passwordScreen);
+      input.value = "";
+      error.innerHTML = "";
+      input.focus({ preventScroll: true });
+    }, 10000);
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const entered = input.value.replace(/\D/g, "");
+
+    if (entered === CORRECT_PASSWORD) {
+      error.innerHTML = "";
+      stageTimers.forEach(clearTimeout);
+      stageTimers = [];
+
+      showOnly(surprise);
+      startDaisies();
+      launchFireworks();
+    } else {
+      error.innerHTML =
+        '<span class="angry" aria-hidden="true">😠</span>' +
+        "Yanlış girdin Hilal! Bir daha düşün bakalım. 🙈";
+
+      input.value = "";
+      input.focus({ preventScroll: true });
+
+      // Küçük bir titreşim, desteklenmeyen cihazlarda sorun çıkarmaz.
+      if (navigator.vibrate) navigator.vibrate(100);
+    }
+  });
+
+  // Gökyüzünde papatyalar yükselsin.
+  function startDaisies() {
+    daisyField.innerHTML = "";
+
+    if (flowerTimer) clearInterval(flowerTimer);
+
+    const flowers = ["🌼", "🌼", "🌼", "🌸", "✿"];
+
+    function addDaisy() {
+      if (surprise.classList.contains("hidden")) return;
+
+      const flower = document.createElement("span");
+      flower.className = "daisy";
+      flower.textContent =
+        flowers[Math.floor(Math.random() * flowers.length)];
+
+      flower.style.left = (Math.random() * 94 + 3) + "%";
+      flower.style.setProperty(
+        "--duration", (7 + Math.random() * 5) + "s"
+      );
+      flower.style.setProperty(
+        "--delay", (Math.random() * 1.5) + "s"
+      );
+      flower.style.fontSize = (22 + Math.random() * 22) + "px";
+
+      daisyField.appendChild(flower);
+      setTimeout(() => flower.remove(), 14000);
+    }
+
+    for (let i = 0; i < 24; i++) {
+      setTimeout(addDaisy, i * 100);
+    }
+
+    flowerTimer = setInterval(addDaisy, 430);
+  }
+
+  // Yıldızlı gece arka planı.
+  const sky = $("sky");
+  const skyCtx = sky.getContext("2d");
+  let stars = [];
+  let skyWidth = 0;
+  let skyHeight = 0;
+  let pixelRatio = 1;
+
+  function resizeSky() {
+    pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    skyWidth = window.innerWidth;
+    skyHeight = window.innerHeight;
+
+    sky.width = skyWidth * pixelRatio;
+    sky.height = skyHeight * pixelRatio;
+    sky.style.width = skyWidth + "px";
+    sky.style.height = skyHeight + "px";
+    skyCtx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+    const count = Math.min(
+      180,
+      Math.max(65, Math.floor(skyWidth * skyHeight / 5000))
+    );
+
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * skyWidth,
+      y: Math.random() * skyHeight,
+      radius: Math.random() * 1.5 + .35,
+      phase: Math.random() * Math.PI * 2,
+      speed: .006 + Math.random() * .025
+    }));
+  }
+
+  let skyTick = 0;
+
+  function drawSky() {
+    skyCtx.clearRect(0, 0, skyWidth, skyHeight);
+    skyTick++;
+
+    stars.forEach(star => {
+      const alpha = .28 +
+        (Math.sin(skyTick * star.speed + star.phase) + 1) * .34;
+
+      skyCtx.beginPath();
+      skyCtx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      skyCtx.fillStyle = `rgba(255,245,221,${alpha})`;
+      skyCtx.fill();
+
+      if (star.radius > 1.35) {
+        skyCtx.beginPath();
+        skyCtx.arc(star.x, star.y, star.radius * 2.5, 0, Math.PI * 2);
+        skyCtx.fillStyle = `rgba(179,202,255,${alpha * .13})`;
+        skyCtx.fill();
+      }
+    });
+
+    requestAnimationFrame(drawSky);
+  }
+
+  // Bazen kayan yıldız.
+  function shootingStar() {
+    const star = document.createElement("div");
+    star.className = "shooting-star";
+    star.style.top = (5 + Math.random() * 40) + "%";
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 1500);
+  }
+
+  function scheduleShootingStar() {
+    setTimeout(() => {
+      shootingStar();
+      scheduleShootingStar();
+    }, 3500 + Math.random() * 6500);
+  }
+
+  // Havai fişek animasyonu.
+  const canvas = $("fireworks");
+  const ctx = canvas.getContext("2d");
+  let fwWidth = 0;
+  let fwHeight = 0;
+  let fwRatio = 1;
+  let particles = [];
+  let fireworkStart = 0;
+
+  function resizeFireworks() {
+    fwRatio = Math.min(window.devicePixelRatio || 1, 2);
+    fwWidth = window.innerWidth;
+    fwHeight = window.innerHeight;
+
+    canvas.width = fwWidth * fwRatio;
+    canvas.height = fwHeight * fwRatio;
+    canvas.style.width = fwWidth + "px";
+    canvas.style.height = fwHeight + "px";
+    ctx.setTransform(fwRatio, 0, 0, fwRatio, 0, 0);
+  }
+
+  function burst(x, y) {
+    const colors = [
+      "#ffe7a8", "#ffc6df", "#c7d9ff",
+      "#ffffff", "#e8c5ff", "#ffd5a1"
+    ];
+
+    const count = 45 + Math.floor(Math.random() * 25);
+
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const velocity = 1 + Math.random() * 4;
+
+      particles.push({
+        x, y,
+        vx: Math.cos(angle) * velocity,
+        vy: Math.sin(angle) * velocity,
+        life: 1,
+        decay: .009 + Math.random() * .013,
+        radius: 1 + Math.random() * 2,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+  }
+
+  function launchFireworks() {
+    fireworksActive = true;
+    particles = [];
+    fireworkStart = performance.now();
+
+    burst(fwWidth * .25, fwHeight * .25);
+    burst(fwWidth * .76, fwHeight * .32);
+    burst(fwWidth * .50, fwHeight * .20);
+
+    if (animationFrame) cancelAnimationFrame(animationFrame);
+    animateFireworks();
+  }
+
+  function animateFireworks() {
+    if (!fireworksActive) return;
+
+    ctx.clearRect(0, 0, fwWidth, fwHeight);
+    const elapsed = performance.now() - fireworkStart;
+
+    if (elapsed < 9500 && Math.random() < .065) {
+      burst(
+        fwWidth * (.12 + Math.random() * .76),
+        fwHeight * (.12 + Math.random() * .38)
+      );
+    }
+
+    particles = particles.filter(p => p.life > 0);
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += .025;
+      p.vx *= .99;
+      p.vy *= .99;
+      p.life -= p.decay;
+
+      ctx.globalAlpha = Math.max(0, p.life);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+
+    ctx.globalAlpha = 1;
+
+    if (elapsed < 10000 || particles.length > 0) {
+      animationFrame = requestAnimationFrame(animateFireworks);
+    } else {
+      fireworksActive = false;
+      ctx.clearRect(0, 0, fwWidth, fwHeight);
+    }
+  }
+
+  $("replayButton").addEventListener("click", () => {
+    launchFireworks();
+    startDaisies();
+    shootingStar();
+  });
+
+  // Ekran boyutu değişirse yıldızları ve fişekleri yeniden ölçekle.
+  window.addEventListener("resize", () => {
+    resizeSky();
+    resizeFireworks();
+  });
+
+  resizeSky();
+  resizeFireworks();
+  drawSky();
+  scheduleShootingStar();
+  startExperience();
+})();
+</script>
+</body>
+</html>
