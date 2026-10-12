@@ -276,6 +276,68 @@ button { cursor: pointer; }
   75% { transform: translateX(5px); }
 }
 
+/* ŞİFRE EKRANINDA SEVİMLİ BOZKURT */
+
+.wolf-mascot {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto 0;
+  min-height: 90px;
+  pointer-events: none;
+}
+
+.wolf-character {
+  position: relative;
+  font-size: 76px;
+  line-height: 1.2;
+  display: inline-block;
+  transform-origin: center bottom;
+  filter: drop-shadow(0 0 16px #a9bdff30);
+  animation: wolfIdle 3s ease-in-out infinite;
+}
+
+.wolf-character.howling {
+  animation: wolfHowl 1.1s ease-in-out;
+}
+
+.wolf-sound {
+  position: absolute;
+  left: calc(50% + 38px);
+  top: 0;
+  color: #ffe5a0;
+  font-size: 15px;
+  font-weight: 750;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(8px) scale(.8);
+  text-shadow: 0 0 14px #ffe5a080;
+}
+
+.wolf-sound.show {
+  animation: wolfSound 1.5s ease forwards;
+}
+
+@keyframes wolfIdle {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-5px) rotate(3deg); }
+}
+
+@keyframes wolfHowl {
+  0%,100% { transform: rotate(0) translateY(0); }
+  25% { transform: rotate(-10deg) translateY(-5px); }
+  50% { transform: rotate(8deg) translateY(-9px) scale(1.06); }
+  75% { transform: rotate(-5deg) translateY(-4px); }
+}
+
+@keyframes wolfSound {
+  0% { opacity: 0; transform: translateY(8px) scale(.8); }
+  20%,70% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-10px) scale(1.05); }
+}
+
 /* MEKTUP SAHNESİ */
 
 #letterScreen { max-width: 440px; }
@@ -453,6 +515,11 @@ button { cursor: pointer; }
   box-shadow: 0 6px 24px #eecde32b;
 }
 
+.yes-btn:disabled {
+  opacity: .7;
+  cursor: default;
+}
+
 .no-btn {
   border: 1px solid #ffffff30;
   background: #ffffff0a;
@@ -468,7 +535,7 @@ button { cursor: pointer; }
   animation: appear .4s ease both;
 }
 
-/* FİNAL */
+/* BÜYÜK SÜRPRİZ */
 
 #surprise { max-width: 520px; }
 
@@ -557,6 +624,7 @@ button { cursor: pointer; }
   animation: squirrelMove 2.7s ease-in-out infinite;
   filter: drop-shadow(0 8px 14px #0003);
   user-select: none;
+  outline: none;
 }
 
 @keyframes squirrelMove {
@@ -639,6 +707,9 @@ button { cursor: pointer; }
   .envelope-area { height: 215px; }
   .letter-buttons { gap: 9px; }
   .answer-btn { font-size: 13px; }
+  .wolf-mascot { min-height: 80px; margin-top: 12px; }
+  .wolf-character { font-size: 64px; }
+  .wolf-sound { left: calc(50% + 30px); font-size: 13px; }
 }
 
 @media (max-height: 700px) {
@@ -692,7 +763,7 @@ button { cursor: pointer; }
     <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
   </section>
 
-  <!-- 3: ŞİFRE -->
+  <!-- 3: ŞİFRE EKRANI -->
   <section id="passwordScreen" class="screen hidden">
     <div class="glass-card">
       <div class="small-star">✧ ✦ ✧</div>
@@ -708,6 +779,13 @@ button { cursor: pointer; }
         <button type="submit" class="primary-btn">Sürprizi Aç ✨</button>
         <div id="errorMessage" class="error" role="status" aria-live="polite"></div>
       </form>
+
+      <!-- Şifre ekranının altındaki hareketli bozkurt -->
+      <div class="wolf-mascot" aria-label="Uluyan sevimli bozkurt">
+        <span id="wolfCharacter" class="wolf-character"
+          role="img" aria-label="Bozkurt">🐺</span>
+        <span id="wolfSound" class="wolf-sound">Auuuu! 🌙</span>
+      </div>
     </div>
     <div class="footer">SENİN İÇİN HAZIRLANDI ♡</div>
   </section>
@@ -822,6 +900,9 @@ button { cursor: pointer; }
   const urgentMessage = $("urgentMessage");
   const squirrel = $("squirrel");
 
+  const wolfCharacter = $("wolfCharacter");
+  const wolfSound = $("wolfSound");
+
   // Şifre: 26.09.2026
   const CORRECT_PASSWORD = "26092026";
 
@@ -831,6 +912,8 @@ button { cursor: pointer; }
   let animationFrame = null;
   let envelopeOpened = false;
   let surpriseStarted = false;
+  let wolfInterval = null;
+  let wolfTimeout = null;
 
   function later(fn, ms) {
     const timer = setTimeout(fn, ms);
@@ -854,7 +937,7 @@ button { cursor: pointer; }
     screen.style.animation = "";
   }
 
-  // Tarih alanına rakam girildikçe GG.AA.YYYY formatı oluşturulur.
+  // Tarih alanını otomatik olarak GG.AA.YYYY formatında düzenle.
   input.addEventListener("input", () => {
     let digits = input.value.replace(/\D/g, "").slice(0, 8);
 
@@ -883,6 +966,36 @@ button { cursor: pointer; }
     }, 10000);
   }
 
+  // Bozkurt yalnızca şifre ekranındayken ulur.
+  function wolfHowl() {
+    if (!wolfCharacter || !wolfSound) return;
+    if (passwordScreen.classList.contains("hidden")) return;
+
+    wolfCharacter.classList.remove("howling");
+    wolfSound.classList.remove("show");
+
+    void wolfCharacter.offsetWidth;
+
+    wolfCharacter.classList.add("howling");
+    wolfSound.classList.add("show");
+
+    if (wolfTimeout) clearTimeout(wolfTimeout);
+
+    wolfTimeout = setTimeout(() => {
+      wolfCharacter.classList.remove("howling");
+      wolfSound.classList.remove("show");
+    }, 1600);
+  }
+
+  // Şifre ekranına geçişten sonra ilk uluma, sonra aralıklı ulumalar.
+  later(() => {
+    wolfHowl();
+  }, 12200);
+
+  wolfInterval = setInterval(() => {
+    wolfHowl();
+  }, 6500);
+
   form.addEventListener("submit", event => {
     event.preventDefault();
 
@@ -897,6 +1010,7 @@ button { cursor: pointer; }
       letterQuestion.classList.remove("visible");
       tapLabel.classList.remove("hidden");
       urgentMessage.textContent = "";
+      yesButton.disabled = false;
       showOnly(letterScreen);
     } else {
       error.innerHTML =
@@ -932,9 +1046,10 @@ button { cursor: pointer; }
     }
   });
 
-  // Hayır'a basınca ekran değişmez, mektup olduğu gibi kalır.
+  // Hayır'a basınca mektup ve soru ekranda kalır.
   noButton.addEventListener("click", () => {
     urgentMessage.textContent = "";
+
     noButton.animate(
       [
         { transform: "scale(1)" },
@@ -945,7 +1060,7 @@ button { cursor: pointer; }
     );
   });
 
-  // Evet'e basınca mesaj çıkar, ardından büyük sürpriz açılır.
+  // Evet'e basınca mesaj belirir, ardından sürpriz açılır.
   yesButton.addEventListener("click", () => {
     if (surpriseStarted) return;
     surpriseStarted = true;
@@ -991,7 +1106,7 @@ button { cursor: pointer; }
     flowerTimer = setInterval(addDaisy, 430);
   }
 
-  // Yıldızlı gece.
+  // Yıldızlı gece arka planı.
   const sky = $("sky");
   const skyCtx = sky.getContext("2d");
   let stars = [];
@@ -1065,7 +1180,7 @@ button { cursor: pointer; }
     }, 3500 + Math.random() * 6500);
   }
 
-  // Havai fişek sistemi.
+  // Havai fişek animasyonu.
   const canvas = $("fireworks");
   const ctx = canvas.getContext("2d");
   let fwWidth = 0;
@@ -1178,7 +1293,7 @@ button { cursor: pointer; }
     }
   }
 
-  squirrel.addEventListener("click", event => {
+  squirrel.addEventListener("click", () => {
     const rect = squirrel.getBoundingClientRect();
     popHearts(rect.left + rect.width / 2, rect.top + rect.height / 2);
   });
@@ -1195,6 +1310,7 @@ button { cursor: pointer; }
     launchFireworks();
     startDaisies();
     shootingStar();
+
     const rect = squirrel.getBoundingClientRect();
     popHearts(rect.left + rect.width / 2, rect.top + rect.height / 2);
   });
